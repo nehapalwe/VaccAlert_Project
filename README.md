@@ -1,1 +1,3 @@
-# EmeProject
+VaccAlert – Child Vaccination Management System
+
+VaccAlert is a web-based application designed to manage and monitor childhood vaccinations, aiming to improve immunization coverage and reduce missed vaccine doses. It features secure login for parents, hospitals, and admin users. Parents can register and manage child records, track upcoming and past vaccinations, book or cancel appointments, receive reminders, and view detailed vaccine information and reports. Hospitals can view appointments, update vaccine stock, manage vaccine data, and mark vaccinations as administered. Admins can authenticate and approve hospital registrations, manage users, and generate overall vaccination coverage reports.
