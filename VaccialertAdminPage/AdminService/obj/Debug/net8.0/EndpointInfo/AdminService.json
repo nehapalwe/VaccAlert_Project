@@ -1,0 +1,617 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AdminService",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/User": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/disable/{id}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/{userId}/status": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/report-range": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/by-role/{roleName}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "roleName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Admin": {
+        "type": "object",
+        "properties": {
+          "AdminId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "UserId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "User": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Child": {
+        "type": "object",
+        "properties": {
+          "ChildId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ParentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ChildName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Dob": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "Gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "BloodGroup": {
+            "type": "string",
+            "nullable": true
+          },
+          "Weight": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "Height": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "MedicalHistory": {
+            "type": "string",
+            "nullable": true
+          },
+          "ChildVaccinationRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChildVaccinationRecord"
+            },
+            "nullable": true
+          },
+          "Parent": {
+            "$ref": "#/components/schemas/Parent"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChildVaccinationRecord": {
+        "type": "object",
+        "properties": {
+          "ChildVaccineId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ChildId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "HospitalId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "VaccineId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Dategiven": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "Nextduedate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "Child": {
+            "$ref": "#/components/schemas/Child"
+          },
+          "Hospital": {
+            "$ref": "#/components/schemas/Hospital"
+          },
+          "Vaccine": {
+            "$ref": "#/components/schemas/Vaccine"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Hospital": {
+        "type": "object",
+        "properties": {
+          "HospitalId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "HospitalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "RegistrationNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "UserId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Address": {
+            "type": "string",
+            "nullable": true
+          },
+          "Telno": {
+            "type": "string",
+            "nullable": true
+          },
+          "ChildVaccinationRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChildVaccinationRecord"
+            },
+            "nullable": true
+          },
+          "User": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Parent": {
+        "type": "object",
+        "properties": {
+          "ParentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "AadharNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "Address": {
+            "type": "string",
+            "nullable": true
+          },
+          "FirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "LastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Occupation": {
+            "type": "string",
+            "nullable": true
+          },
+          "UserId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Child"
+            },
+            "nullable": true
+          },
+          "User": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "RoleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "RoleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "UserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Password": {
+            "type": "string",
+            "nullable": true
+          },
+          "Email": {
+            "type": "string",
+            "nullable": true
+          },
+          "ContactNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "RoleId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Status": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "Admins": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Admin"
+            },
+            "nullable": true
+          },
+          "Hospitals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Hospital"
+            },
+            "nullable": true
+          },
+          "Parents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parent"
+            },
+            "nullable": true
+          },
+          "Role": {
+            "$ref": "#/components/schemas/Role"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "UserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Email": {
+            "type": "string",
+            "nullable": true
+          },
+          "ContactNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Role": {
+            "type": "string",
+            "nullable": true
+          },
+          "Status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vaccine": {
+        "type": "object",
+        "properties": {
+          "VaccineId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "VaccineName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "AgeGroup": {
+            "type": "string",
+            "nullable": true
+          },
+          "ChildVaccinationRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChildVaccinationRecord"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "Date": {
+            "type": "string",
+            "format": "date"
+          },
+          "TemperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TemperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "Summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
